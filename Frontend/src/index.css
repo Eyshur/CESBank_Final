@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* CESBank design tokens, carried over from the native PHP version's style.css */
+@theme {
+  --color-bg: #F7F8FA;
+  --color-surface: #FFFFFF;
+  --color-line: #E3E7ED;
+  --color-ink: #12172B;
+  --color-muted: #6B7280;
+  --color-accent: #1F4FD8;
+  --color-accent-ink: #12296B;
+  --color-success: #1C8A5D;
+  --color-danger: #D63A3A;
+  --color-warning: #C98A1F;
+
+  --font-display: "Sora", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-ink font-sans text-[15px] antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-line rounded-xl shadow-[0_1px_2px_rgba(18,23,43,0.04),0_8px_24px_-12px_rgba(18,23,43,0.10)];
+  }
+  .input {
+    @apply w-full rounded-md border border-line bg-surface px-3 py-2 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20 disabled:bg-bg disabled:text-muted;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-ink;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-ink;
+  }
+  .btn-outline {
+    @apply btn border border-line bg-surface text-ink hover:bg-bg;
+  }
+  .btn-danger {
+    @apply btn bg-danger text-white hover:brightness-95;
+  }
+  .btn-success {
+    @apply btn bg-success text-white hover:brightness-95;
+  }
+  .table {
+    @apply w-full text-left text-sm;
+  }
+  .table th {
+    @apply border-b border-line px-3 py-2 text-xs font-medium uppercase tracking-wide text-muted;
+  }
+  .table td {
+    @apply border-b border-line px-3 py-2.5 align-middle;
+  }
+  .table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .section-title {
+    @apply mb-3 text-xs font-semibold uppercase tracking-wider text-muted;
+  }
+  .figure {
+    @apply font-mono tabular-nums;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+  .card { box-shadow: none; border: none; }
+}
